@@ -1,8 +1,9 @@
-/* styles/globals.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "flickity/css/flickity.css";
 
+/* =====================
+   HEADER
+===================== */
 .header {
   @apply sticky top-0 z-50 bg-white shadow-md;
 }
@@ -12,21 +13,49 @@
 }
 
 .nav-icon {
-  @apply text-gray-600 hover:text-gray-800 transition-colors duration-200;
+  @apply text-gray-600 hover:text-gray-800;
+}
+/* =====================
+Flickity
+===================== */
+.carousel-cell {
+  margin-right: 16px;
 }
 
-.header .search-form input {
+
+/* =====================
+   SEARCH FORM
+===================== */
+.search-form input {
   @apply border p-2 rounded-l w-full;
 }
 
-.header .search-form button {
-  @apply bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-r transition;
+.search-form button {
+  @apply bg-blue-500 text-white p-2 rounded-r;
 }
 
+/* =====================
+   CART POPUP
+===================== */
 .cart-popup {
-  @apply fixed right-0 top-0 w-80 max-w-full bg-white shadow-lg p-4;
+  @apply fixed right-0 top-0 w-80 bg-white shadow-lg ;
 }
 
+/* =====================
+   MENU FLYOUT
+===================== */
 .menu-flyout {
-  @apply absolute bg-white shadow-lg p-4 z-50 w-64 max-w-[90vw];
+  @apply absolute bg-white shadow-lg p-4 z-50;
+}
+
+/* =====================
+   IMAGE FIX (QUAN TRỌNG)
+===================== */
+img {
+  @apply max-w-full ;
+  object-fit: cover;
+  display: block;
+}
+.no-border {
+  border-width: 0 !important;
 }

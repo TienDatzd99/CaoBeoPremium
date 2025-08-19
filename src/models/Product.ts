@@ -1,3 +1,4 @@
+// models/Product.ts
 import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
@@ -7,6 +8,7 @@ const productSchema = new mongoose.Schema({
   service: String,
   duration: String,
   stock: Number,
+  note: String,
 });
 
 export default mongoose.models.Product || mongoose.model('Product', productSchema);

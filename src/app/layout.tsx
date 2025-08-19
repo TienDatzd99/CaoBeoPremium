@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Link href="/" className="flex items-center gap-2">
         <Image
           src="/logo.png"
-          width={120}
+          width={60}
           height={60}
           alt="Cửa hàng Premium"
           priority
