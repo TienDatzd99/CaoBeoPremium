@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 // @ts-expect-error: vì flickity chưa có type
 import Flickity from "flickity";
 import "flickity/css/flickity.css";
@@ -31,23 +32,64 @@ export default function Carousel() {
 
   return (
     <div className="carousel" ref={carouselRef}>
-      <div className="carousel-cell w-1/4 h-[180px] bg-blue-500 rounded-2xl flex items-center justify-center text-white font-bold">
-        Cell 1
+
+      <div className="carousel-cell w-1/4 h-[180px] rounded-2xl overflow-hidden relative">
+        <Image
+          src="/Capcut.jpg"
+          alt="Capcut"
+          fill
+          className="object-cover rounded-2xl"
+        />
       </div>
-      <div className="carousel-cell w-1/4 h-[180px] bg-red-500 rounded-2xl flex items-center justify-center text-white font-bold">
-        Cell 2
+
+       <div className="carousel-cell w-1/4 h-[180px] rounded-2xl overflow-hidden relative">
+        <Image
+          src="/GPT5.jpg"
+          alt="GPT5"
+          fill
+          className="object-cover rounded-2xl"
+        />
       </div>
-      <div className="carousel-cell w-1/4 h-[180px] bg-green-500 rounded-2xl flex items-center justify-center text-white font-bold">
-        Cell 3
+      <div className="carousel-cell w-1/4 h-[180px] rounded-2xl overflow-hidden relative">
+        <Image
+          src="/Youtube.jpg"
+          alt="Capcut"
+          fill
+          className="object-cover rounded-2xl"
+        />
       </div>
-      <div className="carousel-cell w-1/4 h-[180px] bg-purple-500 rounded-2xl flex items-center justify-center text-white font-bold">
-        Cell 4
+
+       <div className="carousel-cell w-1/4 h-[180px] rounded-2xl overflow-hidden relative">
+        <Image
+          src="/Canva.jpg"
+          alt="GPT5"
+          fill
+          className="object-cover rounded-2xl"
+        />
       </div>
-      <div className="carousel-cell w-1/4 h-[180px] bg-pink-500 rounded-2xl flex items-center justify-center text-white font-bold">
-        Cell 5
+      <div className="carousel-cell w-1/4 h-[180px] rounded-2xl overflow-hidden relative">
+        <Image
+          src="/a.jpg"
+          alt="GPT5"
+          fill
+          className="object-cover rounded-2xl"
+        />
       </div>
-      <div className="carousel-cell w-1/4 h-[180px] bg-yellow-500 rounded-2xl flex items-center justify-center text-white font-bold">
-        Cell 6
+       <div className="carousel-cell w-1/4 h-[180px] rounded-2xl overflow-hidden relative">
+        <Image
+          src="/a.jpg"
+          alt="GPT5"
+          fill
+          className="object-cover rounded-2xl"
+        />
+      </div>
+      <div className="carousel-cell w-1/4 h-[180px] rounded-2xl overflow-hidden relative">
+        <Image
+          src="/Spotify.jpg"
+          alt="GPT5"
+          fill
+          className="object-cover rounded-2xl"
+        />
       </div>
     </div>
   );

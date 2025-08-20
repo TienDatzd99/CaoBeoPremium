@@ -28,7 +28,7 @@ const CarouselCategories: React.FC = () => {
   useEffect(() => {
     if (carouselRef.current) {
       flickityRef.current = new Flickity(carouselRef.current, {
-        cellAlign: "left",
+        cellAlign: "center",
         contain: true,
         pageDots: false,
         prevNextButtons: true,

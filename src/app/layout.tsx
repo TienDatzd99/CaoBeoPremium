@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import SessionProviderWrapper from '@/components/SessionProviderWrapper';
 import Link from 'next/link';
 import Image from 'next/image';
+import Header from '@/components/Header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,28 +19,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <SessionProviderWrapper>
           {/* HEADER */}
-          <header className="flex justify-between items-center px-6 py-4 bg-white shadow-md">
-      {/* Logo thương hiệu */}
-      <Link href="/" className="flex items-center gap-2">
-        <Image
-          src="/logo.png"
-          width={60}
-          height={60}
-          alt="Cửa hàng Premium"
-          priority
-        />
-      </Link>
-
-      {/* Navigation */}
-      <nav className="flex gap-6 text-gray-700 font-medium">
-        <Link href="/">Trang chủ</Link>
-        <Link href="/san-pham">Sản phẩm</Link>
-        <Link href="/lien-he">Liên hệ</Link>
-      </nav>
-    </header>
+       
+             <Header/>
+     
 
           {/* CONTENT */}
-          <main className="min-h-screen container mx-auto p-4">{children}</main>
+          <main className="min-h-screen container mx-auto p-4 pt-[180px]">
+            {children}
+          </main>
 
           {/* FOOTER */}
           <footer className="bg-gray-800 text-white p-4 text-center text-sm">
