@@ -1,6 +1,5 @@
-// app/api/auth/[...nextauth]/route.ts
-import { NextResponse } from 'next/server';
 import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import connectMongo from '@/lib/mongodb';
 import User from '@/models/User';
@@ -8,6 +7,10 @@ import bcrypt from 'bcryptjs';
 
 export const authOptions = {
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
+    }),
     CredentialsProvider({
       name: 'Credentials',
       credentials: {
@@ -21,24 +24,62 @@ export const authOptions = {
             throw new Error('Thiếu email hoặc mật khẩu');
           }
           const user = await User.findOne({ email: credentials.email });
-          if (!user || !bcrypt.compareSync(credentials.password, user.password)) {
+          if (!user || !user.password || !bcrypt.compareSync(credentials.password, user.password)) {
             throw new Error('Email hoặc mật khẩu không đúng');
           }
-          return { id: user._id.toString(), email: user.email };
+          return { 
+            id: user._id.toString(), 
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            role: user.role || 'user'
+          };
         } catch (error) {
           console.error('Lỗi khi xác thực:', error);
-          throw new Error('Xác thực thất bại');
+          return null;
         }
       },
     }),
   ],
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) token.id = user.id;
+    async signIn({ user, account }: any) {
+      if (account?.provider === 'google') {
+        try {
+          await connectMongo();
+          
+          // Kiểm tra xem user đã tồn tại chưa
+          const existingUser = await User.findOne({ email: user.email });
+          if (!existingUser) {
+            // Tạo user mới với thông tin từ Google
+            await User.create({
+              email: user.email,
+              name: user.name,
+              image: user.image,
+              provider: 'google',
+              providerId: user.id,
+              emailVerified: new Date(),
+              role: 'user'
+            });
+          }
+        } catch (error) {
+          console.error('Error in signIn callback:', error);
+          return false;
+        }
+      }
+      return true;
+    },
+    async jwt({ token, user }: any) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role || 'user';
+      }
       return token;
     },
-    async session({ session, token }) {
-      if (token) session.user.id = token.id;
+    async session({ session, token }: any) {
+      if (token && session.user) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+      }
       return session;
     },
   },
