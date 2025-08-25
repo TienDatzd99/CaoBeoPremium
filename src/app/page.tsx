@@ -15,6 +15,7 @@ interface Product {
   stock: number;
   image: string;
   sold?: number;
+  category?: string;
 }
 
 export default async function Home() {
@@ -97,7 +98,7 @@ export default async function Home() {
                   </h2>
 
                   <div className="flex items-center text-xs text-gray-500">
-                    <span className="mr-2 bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-[10px]">Giải trí</span>
+                    <span className="mr-2 bg-blue-100 text-blue-600 px-2 py-1 rounded-full text-[10px]">{product.category || 'Khác'}</span>
                     <span className="ml-auto flex items-center gap-1 text-green-600 font-medium">👥 {product.sold || 0}</span>
                   </div>
 

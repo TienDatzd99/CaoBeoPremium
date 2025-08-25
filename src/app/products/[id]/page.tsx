@@ -431,7 +431,20 @@ iOS, Android, Windows, macOS, Smart Speaker, Car Play
 
       {/* Content */}
       <div className="relative z-10">
-        {/* Header with Breadcrumb */}
+        {/* Breadcrumb Navigation - Moved to top */}
+        <div className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+          <div className="max-w-6xl mx-auto px-6 py-6">
+            <nav aria-label="breadcrumbs" className="flex items-center space-x-2 text-sm text-white">
+              <Link href="/" className="hover:text-blue-300 transition-colors font-medium">Trang chủ</Link>
+              <span className="text-gray-300"> - </span>
+              <Link href={`/categories/${product.service.toLowerCase()}`} className="hover:text-blue-300 transition-colors font-medium">{product.service}</Link>
+              <span className="text-gray-300"> - </span>
+              <span className="text-blue-300 font-medium">Tài khoản {product.service} Premium</span>
+            </nav>
+          </div>
+        </div>
+
+        {/* Header with Back Button and Stats */}
         <div className="flex items-center justify-between p-4 text-white">
           <div className="flex items-center space-x-4">
             <button 
@@ -440,13 +453,6 @@ iOS, Android, Windows, macOS, Smart Speaker, Car Play
             >
               <ArrowLeft size={20} />
             </button>
-            <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="hover:text-blue-300 transition-colors">Trang chủ</Link>
-              <span className="text-gray-400">→</span>
-              <Link href="/products" className="hover:text-blue-300 transition-colors">Sản phẩm</Link>
-              <span className="text-gray-400">→</span>
-              <span className="text-blue-300">Mua Tài khoản {product.service} Premium</span>
-            </nav>
           </div>
 
           {/* Customer Reviews & Sold Count */}

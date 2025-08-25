@@ -293,6 +293,7 @@ export default function SignInPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Chưa có tài khoản?{' '}
+
               <Link href="/auth/register" className="font-medium text-blue-600 hover:text-blue-500 transition-colors">
                 Đăng ký ngay
               </Link>
